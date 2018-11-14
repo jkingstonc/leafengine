@@ -9,6 +9,8 @@ The barebones nature of the toolset allows for basic graphics functionality, whi
 ## Getting started: ##
 Included in the project is an example source file, and a binary of this example file. This file demonstrates very basic usage of the library; a 2D raycasting scene.
 
+![alt text](https://imgur.com/a/u2BnpKB)
+
 Included is a main source file, this contains the barebones code required to setup and start drawing to the screen.
 
 cge.h contains all the drawing attributes and methods along with some very basic documentation of what their usage is
