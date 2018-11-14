@@ -9,7 +9,7 @@ The barebones nature of the toolset allows for basic graphics functionality, whi
 ## Getting started: ##
 Included in the project is an example source file, and a binary of this example file. This file demonstrates very basic usage of the library; a 2D raycasting scene.
 
-![alt text](https://imgur.com/a/u2BnpKB)
+![alt text](https://i.imgur.com/yQYRh3D.png)
 
 Included is a main source file, this contains the barebones code required to setup and start drawing to the screen.
 
