@@ -10,11 +10,11 @@ A graphics library for the windows console written in C by James Clarke
 ![alt text](https://i.imgur.com/yQYRh3D.png)
 
 ## Getting started: ##
-=> To use the library, include /lib/include/leafengine.h in your main source file
+=> To use the library, include /lib/include/leafengine.h in your main source file. This contains includes to all required headers
 
 => Included is a main source file, this contains the barebones code required to setup and start drawing to the screen.
 
-=> /lib/include/cge.h contains all the drawing attributes and methods along with some very basic documentation of what their usage is
+=> Included is a batch file to compile, requires gcc and the files to be in the same directory layout as the repository
 
 
 
