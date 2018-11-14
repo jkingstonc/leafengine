@@ -1,0 +1,1 @@
+gcc -o run main.c lib/cge.c lib/maths.c lib/keyboard.c
