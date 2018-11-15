@@ -23,6 +23,17 @@ HANDLE writeHandler;
 /* read (input) handle */
 HANDLE readHandler;
 
+/* Hold input records */
+INPUT_RECORD input;
+
+/* Interaction events */
+DWORD dwEvents;
+/* Previous console display mode */
+DWORD dwPreviousMode = 0;
+/* New console display mode */
+DWORD dwNewMode;
+
+
 /* Title of window */
 char * title = "CGE";
 
@@ -44,7 +55,16 @@ void setupCge(){
   /* initialize handles */
   writeHandler = GetStdHandle(STD_OUTPUT_HANDLE);
   readHandler = GetStdHandle(STD_INPUT_HANDLE);
-
+	
+	/* Retrieving the console mode */
+	GetConsoleMode(readHandler, &dwPreviousMode);
+	/* Enabling mouse input on our new console mode */
+	dwNewMode = dwPreviousMode | ENABLE_MOUSE_INPUT;
+	/* Disabling quick edit mode for the console which prevents direct mouse support */
+	dwNewMode &= ~ENABLE_QUICK_EDIT_MODE;
+	/* Setting the console mode to our new mode */
+	SetConsoleMode(readHandler, dwNewMode | ENABLE_EXTENDED_FLAGS);
+	
   /* Set the console's title */
   SetConsoleTitle(title);
 
@@ -53,13 +73,21 @@ void setupCge(){
 
   /* Set the screen's buffer size */
   SetConsoleScreenBufferSize(writeHandler, bufferSize);
-	
+
   /* Set the window size */
   setWindowInfo();
   
   /* Initialise game loop logic*/
   startTimer=clock();
 }
+
+/* Exit function */
+void exitCge()
+{
+	/* Setting the console back to it's original mode */
+	SetConsoleMode(readHandler, dwPreviousMode | ENABLE_EXTENDED_FLAGS);
+}
+
 /* Initialise window settings (must be called when changes are made) */
 void setWindowInfo()
 {
@@ -96,18 +124,20 @@ void process()
 {
 	/* Check if enough times has passed to perform the next process */
 	if(updateTimer>updateTime) 
-    {
-	  /* Render, clear the screen and reset the update timer for the next process */
-      render();
-      clear(COLOUR_BLACK, SYMBOL_FILL);
-      updateTimer=0;
-    }
+	{
+	/* Render, clear the screen and reset the update timer for the next process */
+		render();
+		clear(COLOUR_BLACK, SYMBOL_FILL);
+		updateTimer=0;
+	}
 	/* Post processing events; calculate deltaTime & FPS, update the process timer variables */
-    endTimer=clock();
-    deltaTime = ((double) (endTimer - startTimer)) / CLOCKS_PER_SEC;
-    FPS=1/deltaTime;
-    updateTimer+=deltaTime;
+	endTimer=clock();
+	deltaTime = ((double) (endTimer - startTimer)) / CLOCKS_PER_SEC;
+	FPS=1/deltaTime;
+	updateTimer+=deltaTime;
 	startTimer=clock();
+	
+	ReadConsoleInput(readHandler, &input, 1, &dwEvents);
 }
 /* Render the screen buffer */
 void render(){

@@ -47,6 +47,15 @@ extern HANDLE writeHandler;
 /* read (input) handle */
 extern HANDLE readHandler;
 
+/* Hold input records */
+extern INPUT_RECORD input;
+
+/* Interaction events */
+extern DWORD dwEvents;
+/* Previous console display mode */
+extern DWORD dwPreviousMode;
+/* New console display mode */
+extern DWORD dwNewMode;
 
 /* Window size coordinates, be sure to start index at zero! */
 extern SMALL_RECT windowSize;
@@ -82,6 +91,8 @@ extern int running;
 /* Engine functionality */
 /* Setup main window functionalities */
 void setupCge();
+/* Exit function */
+void exitCge();
 /* Initialise window settings (must be called when changes are made) */
 void setWindowInfo();
 /* Set window title */

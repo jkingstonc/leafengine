@@ -2,28 +2,19 @@
 
 int main()
 {
-	
+	/* Setup the console game engine */
   setupCge();
-  
-  int key;
 
   while(running)
   {
-    if(keyDown()) 
-	{
-      key=getKeyPress();
-      switch (key)
-      {
-        default: break;
-      }
-    }
-
-    /* Drawing starts here */
-
-    /* Drawing ends here */
-	
-	process();
+		/* Drawing starts here */
+		
+		/* Processing starts here */
+		process();
   }
-
+	
+	/* Exit functionality */
+	exitCge();
+	
   return 0;
 }
