@@ -1,7 +1,7 @@
 #include "include/cge.h"
 
 /* Window size coordinates, be sure to start index at zero! */
-SMALL_RECT windowSize = {0, 0, WIDTH, HEIGHT};
+SMALL_RECT windowSize = {0, 0, WIDTH-1, HEIGHT-1};
 
 /* A COORD struct for specificying the console's screen buffer dimensions */
 COORD bufferSize = {WIDTH, HEIGHT};
@@ -51,11 +51,11 @@ void setupCge(){
   /* Set the screen font properties */
   setFont(FONT_SIZE_X, FONT_SIZE_Y);
 
-  /* Set the window size */
-  setWindowInfo();
-
   /* Set the screen's buffer size */
   SetConsoleScreenBufferSize(writeHandler, bufferSize);
+	
+  /* Set the window size */
+  setWindowInfo();
   
   /* Initialise game loop logic*/
   startTimer=clock();
