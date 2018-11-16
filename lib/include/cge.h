@@ -8,7 +8,7 @@
 #define WIDTH 100
 #define HEIGHT 50
 
-#define FONT_SIZE_X 12
+#define FONT_SIZE_X 15
 #define FONT_SIZE_Y 15
 
 /* Colours use ASCII + Extended Ascii encoding */
@@ -56,6 +56,9 @@ extern DWORD dwEvents;
 extern DWORD dwPreviousMode;
 /* New console display mode */
 extern DWORD dwNewMode;
+
+/* Input timeout millisecond */
+extern int inputTimeout;
 
 /* Window size coordinates, be sure to start index at zero! */
 extern SMALL_RECT windowSize;

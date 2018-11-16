@@ -2,19 +2,20 @@
 
 int main()
 {
-  /* Setup the console game engine */
+	/* Setup the console game engine */
   setupCge();
 	
   while(running)
   {
-      /* Drawing starts here */
+		
+		/* Drawing & Logicstarts here */
 
-      /* Processing starts here */
-      process();
+		/* Processing starts here */
+		process();
   }
 	
-  /* Exit functionality */
-  exitCge();
+	/* Exit functionality */
+	exitCge();
 	
   return 0;
 }

@@ -25,7 +25,6 @@ HANDLE readHandler;
 
 /* Hold input records */
 INPUT_RECORD input;
-
 /* Interaction events */
 DWORD dwEvents;
 /* Previous console display mode */
@@ -33,6 +32,8 @@ DWORD dwPreviousMode = 0;
 /* New console display mode */
 DWORD dwNewMode;
 
+/* Input timeout millisecond */
+int inputTimeout=1;
 
 /* Title of window */
 char * title = "CGE";
@@ -137,7 +138,12 @@ void process()
 	updateTimer+=deltaTime;
 	startTimer=clock();
 	
-	ReadConsoleInput(readHandler, &input, 1, &dwEvents);
+	/* Checking if readhandler has been updated within a timeout period */
+	if (WaitForSingleObject(readHandler, inputTimeout) == WAIT_OBJECT_0)
+	{	
+		/* Read console input into dwEvents */
+		ReadConsoleInput(readHandler, &input, 1, &dwEvents);
+	}
 }
 /* Render the screen buffer */
 void render(){
